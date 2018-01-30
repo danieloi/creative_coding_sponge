@@ -44,7 +44,8 @@
         show() {
             push();
             translate(this.pos.x, this.pos.y, this.pos.z);
-            box(this.r, this.r, this.r); //p5 function that creates the geometry
+            normalMaterial();
+            box(this.r); //p5 function that creates the geometry
             pop();
         }
 
@@ -86,7 +87,7 @@
         }
 
         function resetSketch() {
-            b = new Box(0,0,0,150);
+            b = new Box(0,0,0,120);
             sponge = [];
             sponge.push(b);
         }
