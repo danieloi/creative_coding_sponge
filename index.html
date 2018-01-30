@@ -9,7 +9,6 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.sound.min.js"></script>
 	<script>
         class Box {
 
@@ -64,71 +63,67 @@
         var trigger
 
         function setup() {
-        canvas = createCanvas(360, 360, WEBGL);
-        central_X = (innerWidth/2) - (width/2);
-        central_Y = (innerHeight/2) - (height/2);
-        canvas.position(central_X, central_Y);
+            canvas = createCanvas(300, 300, WEBGL);
+            central_X = (innerWidth/2) - (width/2);
+            central_Y = (innerHeight/2) - (height/2);
+            canvas.position(central_X, central_Y);
 
 
-        resetSketch();
+            resetSketch();
 
-        invertButton = createButton('FLIP ALGO');
-        resetButton = createButton('RESET');
-        divideButton = createButton('DIVIDE');
+            invertButton = createButton('FLIP ALGO');
+            resetButton = createButton('RESET');
+            divideButton = createButton('DIVIDE');
 
-        divideButton.mouseClicked(updateSponge);
-        resetButton.mouseClicked(resetSketch);
-        invertButton.mouseClicked(flipAlgo);
-        // invertButton.mousePressed();
-        // resetButton.mousePressed();
-        invertButton.position(central_X, central_Y);
-        resetButton.position(central_X + invertButton.width, central_Y);
-        divideButton.position(central_X + invertButton.width + resetButton.width, central_Y);
+            divideButton.mouseClicked(updateSponge);
+            resetButton.mouseClicked(resetSketch);
+            invertButton.mouseClicked(flipAlgo);
+            // invertButton.mousePressed();
+            // resetButton.mousePressed();
+            invertButton.position(central_X, central_Y);
+            resetButton.position(central_X + invertButton.width, central_Y);
+            divideButton.position(central_X + invertButton.width + resetButton.width, central_Y);
         }
 
         function resetSketch() {
-        b = new Box(0,0,0,150);
-        sponge = [];
-        sponge.push(b);
-        }
-
-        function curPos() {
-        this.position();
+            b = new Box(0,0,0,150);
+            sponge = [];
+            sponge.push(b);
         }
 
         function flipAlgo(){
-        if(trigger == 1) {
-        trigger = 0;
-        } else {
-        trigger = 1;
-        }
-        resetSketch();//starts over
+            if(trigger == 1) {
+                trigger = 0;
+            } else {
+                trigger = 1;
+            }
+            resetSketch();//starts over
         }
 
         function updateSponge(){
-        var next = [];
-        for (var i = 0; i < sponge.length; i++) {
-        var b = sponge[i];
-        //        console.log(i);
-        var newBoxes = b.generate(trigger);
-        //        console.log(newBoxes);
-        next = next.concat(newBoxes);
-        }
-        sponge = next;
+            var next = [];
+            for (var i = 0; i < sponge.length; i++) {
+                var b = sponge[i];
+                //        console.log(i);
+                var newBoxes = b.generate(trigger);
+                //        console.log(newBoxes);
+                next = next.concat(newBoxes);
+            }
+            sponge = next;
         }
 
         function draw() {
-        background(30);
-        stroke(255);
-        noFill();
-        rotateX(frameCount * 0.01);
-        rotateY(frameCount * 0.01);
-        //    ambientLight(150);
-        //    ambientMaterial(200);
-        //    rotateZ(frameCount * 0.01);
-        for(var i = 0; i < sponge.length; i++){
-        sponge[i].show();
-        }
+            background(30);
+            stroke(255);
+            noFill();
+            rotateX(frameCount * 0.01);
+            rotateY(frameCount * 0.01);
+            //    ambientLight(150);
+            //    ambientMaterial(200);
+            //    rotateZ(frameCount * 0.01);
+            for(var i = 0; i < sponge.length; i++){
+                sponge[i].show();
+            }
         //    translate(width/2, height/2);
 
 
