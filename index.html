@@ -44,6 +44,7 @@
         show() {
             push();
             translate(this.pos.x, this.pos.y, this.pos.z);
+            ambientLight(150);
             normalMaterial();
             box(this.r, this.r, this.r); //p5 function that creates the geometry
             pop();
